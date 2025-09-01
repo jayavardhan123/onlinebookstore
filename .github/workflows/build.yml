@@ -26,3 +26,6 @@ jobs:
     
     - name: Run echo
       run: echo $name
+
+    - name: Run Configuration Variable
+      run: echo ${{ vars.PROJECT_ID }}
