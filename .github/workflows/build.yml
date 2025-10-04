@@ -1,4 +1,4 @@
-name: Maven Build Pipeline
+name: Build Pipeline
 
 # Github Events
 on:
@@ -28,4 +28,4 @@ jobs:
       run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
     - name: docker image push
-      run: docker push $APPLICATION_NAME:$IMAGE_TAG
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/$APPLICATION_NAME:$IMAGE_TAG
