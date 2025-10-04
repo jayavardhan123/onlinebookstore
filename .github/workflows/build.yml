@@ -18,8 +18,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Maven Build
+    - name: maven build
       run: mvn -B clean install package --file pom.xml
 
-    - name: Docker Build
-      run: docker build -t ${env.APPLICATION_NAME}:${env.IMAGE_TAG} .
+    - name: docker build
+      run: docker build -t "$APPLICATION_NAME":"$IMAGE_TAG" .
+
+    - name: docker login
+      run: echo secrets.DOCKER_PASSWORD | docker login --username secrets.DOCKER_USERNAME --password-stdin
