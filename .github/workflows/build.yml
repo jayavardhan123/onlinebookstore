@@ -25,4 +25,4 @@ jobs:
       run: docker build -t "$APPLICATION_NAME":"$IMAGE_TAG" .
 
     - name: docker login
-      run: echo secrets.DOCKER_PASSWORD | docker login --username secrets.DOCKER_USERNAME --password-stdin
+      run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
