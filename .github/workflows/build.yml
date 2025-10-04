@@ -1,14 +1,12 @@
-name: Build Pipeline
+name: Maven Build Pipeline
 
 # Github Events
 on:
   push:
-    branches: [ "J2EE" ]
-
-# Environment variables
+    branches: [ "dev" ]
 env:
-    APPLICATION_NAME: onlinebookstore
-    IMAGE_TAG: 0.1
+  APPLICATION_NAME: "onlinebookstore"
+  IMAGE_TAG: "0.1"
 
 jobs:
   build:
