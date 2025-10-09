@@ -9,7 +9,7 @@ env:
   IMAGE_TAG: "0.1"
 
 jobs:
-  build:
+  maven_build:
     runs-on: ubuntu-latest # GitHub Runner
     permissions:
       contents: read
@@ -20,6 +20,11 @@ jobs:
 
     - name: maven build
       run: mvn -B clean install package --file pom.xml
+
+  docker_build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
 
     - name: docker build
       run: docker build -t ${{ secrets.DOCKER_USERNAME }}/$APPLICATION_NAME:$IMAGE_TAG .
