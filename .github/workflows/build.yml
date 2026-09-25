@@ -38,7 +38,7 @@ jobs:
       - name: print upload artifact id
         env:
           maven_build_artifact_id: ${{ needs.maven_build.outputs.artifact_id }}
-        run: echo "Artifact ID from previous job is ${maven_build_artifact_id}
+        run: echo "Artifact ID from previous job is ${maven_build_artifact_id}"
 
       - name: docker build
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/$APPLICATION_NAME:$IMAGE_TAG .
