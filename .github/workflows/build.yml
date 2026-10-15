@@ -14,31 +14,31 @@ jobs:
     permissions:
       contents: read
       packages: write
-    outputs:
-      artifact_id: ${{ steps.upload_artifacts.outputs.artifact-id }}
+#    outputs:
+#      artifact_id: ${{ steps.upload_artifacts.outputs.artifact-id }}
     steps:
       - uses: actions/checkout@v3
 
       - name: maven build
         run: mvn -B clean install package --file pom.xml
 
-      - uses: actions/upload-artifact@v4
-        id: upload_artifacts
-        with:
-          name: WAR file
-          path: target/onlinebookstore-0.0.1-SNAPSHOT.war
+#      - uses: actions/upload-artifact@v4
+#        id: upload_artifacts
+#        with:
+#          name: WAR file
+#          path: target/onlinebookstore-0.0.1-SNAPSHOT.war
 
-  docker_build:
-    runs-on: ubuntu-latest
-    needs:
-      - maven_build
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: print upload artifact id
-        env:
-          maven_build_artifact_id: ${{ needs.maven_build.outputs.artifact_id }}
-        run: echo "Artifact ID from previous job is ${maven_build_artifact_id}"
+#  docker_build:
+#    runs-on: ubuntu-latest
+#    needs:
+#      - maven_build
+#    steps:
+#      - uses: actions/checkout@v3
+#
+#      - name: print upload artifact id
+#        env:
+#          maven_build_artifact_id: ${{ needs.maven_build.outputs.artifact_id }}
+#        run: echo "Artifact ID from previous job is ${maven_build_artifact_id}"
 
       - name: docker build
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/$APPLICATION_NAME:$IMAGE_TAG .
