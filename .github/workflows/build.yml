@@ -2,8 +2,10 @@ name: Build Pipeline
 
 # Github Events
 on:
-  push:
-    branches: [ "dev" ]
+  workflow_dispatch:
+
+#  push:
+#    branches: [ "dev" ]
 env:
   APPLICATION_NAME: "onlinebookstore"
   IMAGE_TAG: "0.1"
