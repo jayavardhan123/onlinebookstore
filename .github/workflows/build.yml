@@ -1,8 +1,7 @@
 name: Build Pipeline
 
 # Github Events
-on:
-  workflow_dispatch:
+on: workflow_dispatch
 
 #  push:
 #    branches: [ "dev" ]
